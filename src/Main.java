@@ -71,6 +71,8 @@ public class Main {
 
             //System.out.println(word);
 
+            System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
+
             for (Character character : placeholder) {
                 System.out.print(character);
             }
@@ -179,10 +181,10 @@ public class Main {
             System.out.printf("\nThe word you were looking for was %s", word);
             return askForPlayAgain();
         }
-        else return checkWin(lettersInWordd);
+        else return checkWin(lettersInWordd, word);
     }
 
-    private static boolean checkWin(ArrayList<Character> lettersInWord) throws IOException {
+    private static boolean checkWin(ArrayList<Character> lettersInWord, String word) throws IOException {
         int countCorrect = 0;
         for (int i = 0; i < lettersInWord.size(); i++) {
             if (guessedWords.contains(lettersInWord.get(i))){
@@ -190,6 +192,7 @@ public class Main {
             }
         }
         if (countCorrect==lettersInWord.size()){
+            System.out.printf("\nThe word was %s", word.toUpperCase());
             System.out.println("\nYOU HAVE WON!");
             return askForPlayAgain();
         }
