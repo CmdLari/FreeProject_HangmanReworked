@@ -71,14 +71,15 @@ public class Main {
 
             //System.out.println(word);
 
-            System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
 
             for (Character character : placeholder) {
                 System.out.print(character);
             }
-            failcounter=processUserInput(getUserInput(alphabet), word, failcounter, gallows);
             System.out.println(guessedWords);
+            failcounter=processUserInput(getUserInput(alphabet), word, failcounter, gallows);
             playing = checkLoss(failcounter, gallows, word, lettersInWord);
+            System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
+
         }
     }
 
@@ -186,8 +187,8 @@ public class Main {
 
     private static boolean checkWin(ArrayList<Character> lettersInWord, String word) throws IOException {
         int countCorrect = 0;
-        for (int i = 0; i < lettersInWord.size(); i++) {
-            if (guessedWords.contains(lettersInWord.get(i))){
+        for (Character character : lettersInWord) {
+            if (guessedWords.contains(character)) {
                 countCorrect++;
             }
         }
