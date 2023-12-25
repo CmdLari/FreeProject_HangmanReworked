@@ -217,7 +217,9 @@ public class Main {
         Scanner scanWinner = new Scanner(System.in);
         System.out.println("\nCONGRATULATIONS! \nLeave your name:");
         writeWinner.newLine();
-        writeWinner.append(scanWinner.next().toUpperCase());
+        String entry = scanWinner.next();
+        entry += scanWinner.nextLine();
+        writeWinner.append(entry.toUpperCase());
         writeWinner.append(String.format(" guessed the word: %s", word));
         writeWinner.close();
         System.out.println("\nDo you wanna see the records? [y/n]");
