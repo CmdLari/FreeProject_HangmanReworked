@@ -75,7 +75,7 @@ public class Main {
             for (Character character : placeholder) {
                 System.out.print(character);
             }
-            System.out.println(guessedWords);
+            System.out.printf("\n%s", guessedWords);
             failcounter=processUserInput(getUserInput(alphabet), word, failcounter, gallows);
             playing = checkLoss(failcounter, gallows, word, lettersInWord);
             System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
