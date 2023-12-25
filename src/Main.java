@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -10,17 +8,6 @@ public class Main {
     static ArrayList<Character> placeholder = new ArrayList<>();
     static ArrayList<Character> guessedWords = new ArrayList<>();
 
-    //Logic
-    //Chose word from List
-    //Draw lines
-    //Get user input
-    //Check if Letter is in word
-    //if not: draw part of the gallows
-    //if: show lines with letter
-    //print list of guessed letters
-    //check if word complete
-    //check if gallow complete
-    //ask for new round
     public static void main(String[] args) throws IOException {
 
 
@@ -62,7 +49,7 @@ public class Main {
         guessedWords.clear();
         placeholder = placeholder(word);
 
-        int failcounter = 0;
+        int failCounter = 0;
 
         boolean playing = true;
 
@@ -76,16 +63,15 @@ public class Main {
                 System.out.print(character);
             }
             System.out.printf("\n%s", guessedWords);
-            failcounter=processUserInput(getUserInput(alphabet), word, failcounter, gallows);
-            playing = checkLoss(failcounter, gallows, word, lettersInWord);
-            System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
+            failCounter=processUserInput(getUserInput(alphabet), word, failCounter, gallows);
+            playing = checkLoss(failCounter, gallows, word, lettersInWord);
 
         }
     }
 
     /**
      * Get a pool of words for the game
-     * @return the list of potenntial words
+     * @return the list of potential words
      */
     private static ArrayList<String> createWordlist() throws IOException {
 
@@ -148,16 +134,15 @@ public class Main {
         return false;
     }
 
-    private static int processUserInput(Character userInput, String word, int failcounter, ArrayList<String> gallows){
+    private static int processUserInput(Character userInput, String word, int failCounter, ArrayList<String> gallows){
         if(checkIfLetterInWord(userInput, word)){
             replacePlaceholder(userInput, word, placeholder);
         }
 
         else {
-            return drawGallows(failcounter, gallows);
+            failCounter++;
         }
-
-        return failcounter;
+        return drawGallows(failCounter, gallows);
     }
 
     private static void replacePlaceholder(Character userInput, String word, ArrayList<Character> placeholder) {
@@ -168,12 +153,12 @@ public class Main {
         }
     }
 
-    private static int drawGallows(int failcounter, ArrayList<String> gallows) {
-        for (int i = 0; i <= failcounter; i++) {
+    private static int drawGallows(int failCounter, ArrayList<String> gallows) {
+        System.out.println("\n-~°~-:_:-~°~-:_:-~°~-:_:-~°~-:_:-~°~-");
+        for (int i = 0; i < failCounter; i++) {
             System.out.printf("%s \n", gallows.get(i));
         }
-        failcounter++;
-        return failcounter;
+        return failCounter;
     }
 
     private static boolean checkLoss(int failcounter, ArrayList<String> gallows, String word, ArrayList<Character> lettersInWordd) throws IOException {
@@ -195,6 +180,7 @@ public class Main {
         if (countCorrect==lettersInWord.size()){
             System.out.printf("\nThe word was %s", word.toUpperCase());
             System.out.println("\nYOU HAVE WON!");
+            youWon(word);
             return askForPlayAgain();
         }
         return true;
@@ -224,5 +210,27 @@ public class Main {
             }
         }
         return lettersInWord;
+    }
+
+    private static void youWon(String word) throws IOException {
+        BufferedWriter writeWinner = new BufferedWriter(new FileWriter("winners.txt", true));
+        Scanner scanWinner = new Scanner(System.in);
+        System.out.println("\nCONGRATULATIONS! \nLeave your name:");
+        writeWinner.newLine();
+        writeWinner.append(scanWinner.next().toUpperCase());
+        writeWinner.append(String.format(" guessed the word: %s", word));
+        writeWinner.close();
+        System.out.println("\nDo you wanna see the records? [y/n]");
+        if (scanWinner.next().charAt(0) == 'y') {
+            showRecord();
+        }
+    }
+
+    private static void showRecord() throws IOException {
+        BufferedReader records = new BufferedReader(new FileReader("winners.txt"));
+        String line;
+        while((line = records.readLine())!=null){
+            System.out.printf("\n%s\n", line);
+        }
     }
 }
