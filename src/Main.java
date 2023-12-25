@@ -184,7 +184,7 @@ public class Main {
 
     private static boolean checkWin(ArrayList<Character> lettersInWord) throws IOException {
         int countCorrect = 0;
-        for (int i = 0; i < lettersInWord.size()-1; i++) {
+        for (int i = 0; i < lettersInWord.size(); i++) {
             if (guessedWords.contains(lettersInWord.get(i))){
                 countCorrect++;
             }
