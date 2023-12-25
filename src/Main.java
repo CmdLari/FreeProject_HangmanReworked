@@ -221,7 +221,8 @@ public class Main {
         writeWinner.append(String.format(" guessed the word: %s", word));
         writeWinner.close();
         System.out.println("\nDo you wanna see the records? [y/n]");
-        if (scanWinner.next().charAt(0) == 'y') {
+        char answer = scanWinner.next().charAt(0);
+        if (answer == 'y') {
             showRecord();
         }
     }
