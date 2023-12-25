@@ -57,6 +57,8 @@ public class Main {
         gallows.add(g);
         gallows.add(h);
 
+        ArrayList<Character> lettersInWord = lettersList(word);
+
         guessedWords.clear();
         placeholder = placeholder(word);
 
@@ -74,7 +76,7 @@ public class Main {
             }
             failcounter=processUserInput(getUserInput(alphabet), word, failcounter, gallows);
             System.out.println(guessedWords);
-            playing = checkLoss(failcounter, gallows, word);
+            playing = checkLoss(failcounter, gallows, word, lettersInWord);
         }
     }
 
@@ -171,23 +173,23 @@ public class Main {
         return failcounter;
     }
 
-    private static boolean checkLoss(int failcounter, ArrayList<String> gallows, String word) throws IOException {
+    private static boolean checkLoss(int failcounter, ArrayList<String> gallows, String word, ArrayList<Character> lettersInWordd) throws IOException {
         if (failcounter == gallows.size()-1){
             System.out.println("\nYOU HAVE LOST!");
             System.out.printf("\nThe word you were looking for was %s", word);
             return askForPlayAgain();
         }
-        else return checkWin(word);
+        else return checkWin(lettersInWordd);
     }
 
-    private static boolean checkWin(String word) throws IOException {
+    private static boolean checkWin(ArrayList<Character> lettersInWord) throws IOException {
         int countCorrect = 0;
-        for (int i = 0; i < word.length()-1; i++) {
-            if (guessedWords.contains(word.charAt(i))){
+        for (int i = 0; i < lettersInWord.size()-1; i++) {
+            if (guessedWords.contains(lettersInWord.get(i))){
                 countCorrect++;
             }
         }
-        if (countCorrect==word.length()){
+        if (countCorrect==lettersInWord.size()){
             System.out.println("\nYOU HAVE WON!");
             return askForPlayAgain();
         }
@@ -208,5 +210,15 @@ public class Main {
             askForPlayAgain();
         }
         return true;
+    }
+
+    private static ArrayList<Character> lettersList(String word){
+        ArrayList<Character> lettersInWord = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
+            if (!lettersInWord.contains(word.charAt(i))){
+                lettersInWord.add(word.charAt(i));
+            }
+        }
+        return lettersInWord;
     }
 }
