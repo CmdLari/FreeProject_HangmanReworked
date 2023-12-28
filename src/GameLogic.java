@@ -32,8 +32,6 @@ public class GameLogic {
         gallows.add(g);
         gallows.add(h);
 
-        //The alphabet
-
         //chose word
         this.word = GamePreparations.chooseWord(GamePreparations.createWordlist()).toUpperCase();
         //placeholder for word
@@ -143,6 +141,9 @@ public class GameLogic {
     private void youWon() throws IOException {
         BufferedWriter writeWinner = new BufferedWriter(new FileWriter("winners.txt", true));
         Scanner scanWinner = new Scanner(System.in);
+        if (this.failCounter==0){
+            System.out.println("\nFLAWLESS VICTORY!1!!");
+        }
         System.out.println("\nCONGRATULATIONS! \nLeave your name:");
         writeWinner.newLine();
         String entry = scanWinner.next();
