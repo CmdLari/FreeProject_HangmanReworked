@@ -15,10 +15,10 @@ public class GameLogic {
     public GameLogic() throws IOException {
         //gallows get set up
         String a = "_________";
-        String b = "|/      |";
+        String b = "|/     |";
         String c = "|    (͡๏̯͡๏)";
-        String d = "|     /()\\";
-        String e = "|    ./ \\.";
+        String d = "|    /()\\";
+        String e = "|     ./ \\.";
         String f = "|";
         String g = "|\\________";
         String h = " ";
