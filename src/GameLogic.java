@@ -15,10 +15,10 @@ public class GameLogic {
     public GameLogic() throws IOException {
         //gallows get set up
         String a = "_________";
-        String b = "|/     |";
+        String b = "|/      |";
         String c = "|    (͡๏̯͡๏)";
-        String d = "|    /()\\";
-        String e = "|     ./ \\.";
+        String d = "|     /()\\";
+        String e = "|    ./ \\.";
         String f = "|";
         String g = "|\\________";
         String h = " ";
@@ -114,6 +114,7 @@ public class GameLogic {
     boolean checkLoss() throws IOException {
         if (this.failCounter == this.gallows.size()-1){
             System.out.println("\nYOU HAVE LOST!");
+            drawGallows();
             System.out.printf("\nThe word you were looking for was %s", this.word);
             writeLoss();
             return false;
