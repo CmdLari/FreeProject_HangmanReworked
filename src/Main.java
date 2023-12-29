@@ -32,7 +32,7 @@ public class Main {
         }
         return false;
     }
-    private static boolean askForPlayAgain() throws IOException {
+    private static boolean askForPlayAgain() {
         Scanner playAgain = new Scanner(System.in);
         System.out.println("\nDO YOU WANT TO PLAY AGAIN? [y/n]\n");
         String input = playAgain.next().toLowerCase();
