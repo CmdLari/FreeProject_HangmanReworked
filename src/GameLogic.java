@@ -10,6 +10,7 @@ public class GameLogic {
     ArrayList<Character> guessedLetters;
     int failCounter;
     static String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    static String alphabetGER = "abcdefghijklmnopqrstuvwxyzäöüß";
     ArrayList<String> gallows;
 
     public GameLogic() throws IOException {
@@ -42,6 +43,42 @@ public class GameLogic {
         this.guessedLetters = new ArrayList<>();
         //fails
         this.failCounter = 0;
+        //alphabet
+        alphabet = alphabet;
+    }
+
+    public GameLogic(String german) throws IOException {
+        //gallows get set up
+        String a = "_________";
+        String b = "|/      |";
+        String c = "|    (͡๏̯͡๏";
+        String d = "|     /()\\";
+        String e = "|    ./ \\.";
+        String f = "|";
+        String g = "|\\________";
+        String h = " ";
+        this.gallows = new ArrayList<>();
+        gallows.add(a);
+        gallows.add(b);
+        gallows.add(c);
+        gallows.add(d);
+        gallows.add(e);
+        gallows.add(f);
+        gallows.add(g);
+        gallows.add(h);
+
+        //chose word
+        this.word = GamePreparations.chooseWord(GamePreparations.createWordlistGER()).toUpperCase();
+        //placeholder for word
+        this.placeholder = GamePreparations.placeholder(word);
+        //letters in word
+        this.lettersInWord = lettersList(word);
+        //guessed letters
+        this.guessedLetters = new ArrayList<>();
+        //fails
+        this.failCounter = 0;
+        //alphabet
+        alphabet=alphabetGER;
     }
 
 

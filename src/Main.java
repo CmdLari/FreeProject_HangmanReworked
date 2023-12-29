@@ -9,7 +9,7 @@ public class Main {
 
     }
     public static void gameloop() throws IOException {
-        GameLogic game = new GameLogic();
+        GameLogic game = GamePreparations.choseLanguage();
         if (!playgame(game)){
             if (askForPlayAgain()){
                 gameloop();
