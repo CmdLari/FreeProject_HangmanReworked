@@ -16,7 +16,7 @@ public class GameLogic {
         //gallows get set up
         String a = "_________";
         String b = "|/      |";
-        String c = "|    (͡๏̯͡๏)";
+        String c = "|    (͡๏̯͡๏";
         String d = "|     /()\\";
         String e = "|    ./ \\.";
         String f = "|";
