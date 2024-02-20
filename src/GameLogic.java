@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameLogic {
@@ -11,27 +13,20 @@ public class GameLogic {
     int failCounter;
     static String alphabet = "abcdefghijklmnopqrstuvwxyz";
     static String alphabetGER = "abcdefghijklmnopqrstuvwxyzäöüß";
-    ArrayList<String> gallows;
+    final List<String> gallows;
 
     public GameLogic() throws IOException {
         //gallows get set up
-        String a = "_________";
-        String b = "|/      |";
-        String c = "|    (͡๏̯͡๏";
-        String d = "|     /()\\";
-        String e = "|    ./ \\.";
-        String f = "|";
-        String g = "|\\________";
-        String h = " ";
-        this.gallows = new ArrayList<>();
-        gallows.add(a);
-        gallows.add(b);
-        gallows.add(c);
-        gallows.add(d);
-        gallows.add(e);
-        gallows.add(f);
-        gallows.add(g);
-        gallows.add(h);
+        this.gallows = Arrays.asList(
+                "_________",
+                "|/      |",
+                "|    (͡๏̯͡๏",
+                "|     /()\\",
+                "|    ./ \\.",
+                "|",
+                "|\\________",
+                " "
+        );
 
         //chose word
         this.word = GamePreparations.chooseWord(GamePreparations.createWordlist()).toUpperCase();
@@ -49,24 +44,16 @@ public class GameLogic {
 
     public GameLogic(String german) throws IOException {
         //gallows get set up
-        String a = "_________";
-        String b = "|/      |";
-        String c = "|    (͡๏̯͡๏";
-        String d = "|     /()\\";
-        String e = "|    ./ \\.";
-        String f = "|";
-        String g = "|\\________";
-        String h = " ";
-        this.gallows = new ArrayList<>();
-        gallows.add(a);
-        gallows.add(b);
-        gallows.add(c);
-        gallows.add(d);
-        gallows.add(e);
-        gallows.add(f);
-        gallows.add(g);
-        gallows.add(h);
-
+        this.gallows = Arrays.asList(
+                "_________",
+                "|/      |",
+                "|    (͡๏̯͡๏",
+                "|     /()\\",
+                "|    ./ \\.",
+                "|",
+                "|\\________",
+                " "
+        );
         //chose word
         this.word = GamePreparations.chooseWord(GamePreparations.createWordlistGER()).toUpperCase();
         //placeholder for word
