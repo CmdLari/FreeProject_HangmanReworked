@@ -73,7 +73,7 @@ public class GameLogic {
         Scanner userInput = new Scanner(System.in);
 
         System.out.println("\nPlease guess a letter.\n");
-        String input = userInput.next();
+        String input = userInput.next().toLowerCase();
         char userInputChar = input.charAt(0);
 
         //Check if input is letter
